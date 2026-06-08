@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        <title>Not my first webpage</title>
+        <style>
+           
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#1e293b,#0f172a);
+    color:white;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    width:500px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+h1{
+    margin-bottom:25px;
+    color:#38bdf8;
+}
+
+input{
+    width:70%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#38bdf8;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    background:#0ea5e9;
+}
+
+#comp,
+#results{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+#results{
+    color:#facc15;
+}
+
+#score_h,
+#score_c{
+    margin-top:15px;
+    font-size:18px;
+    padding:10px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.1);
+}
+
+.score-board{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    justify-content:center;
+}
+</style>
+       
+    </head>
+<body>
+    <body>
+    <div class="container">
+        <h1>🎮 Rock Paper Scissors</h1>
+
+        <p>
+            <input type="text" id="choice"
+                placeholder="Rock, Paper or Scissors">
+            <button id="submit">Play</button>
+        </p>
+
+        <p id="comp"></p>
+        <p id="results"></p>
+
+        <div class="score-board">
+            <p id="score_h"></p>
+            <p id="score_c"></p>
+        </div>
+    </div>
+</body>
+      <script>
+       let score_hh=0;  let score_cc=0;
+       document.getElementById("submit").addEventListener("click", () => {
+      const playerChoice = document.getElementById("choice").value
+     const cleaned = playerChoice.toLowerCase().trim()
+      playGame(cleaned); })
+      function updateScore() {
+    document.getElementById("score_c").textContent =
+        "Computer score : " + score_cc;
+
+    document.getElementById("score_h").textContent =
+        "Human score : " + score_hh;
+}
+
+        function playGame(cleaned){
+             let comp_choice = Math.floor(Math.random()*3)
+            if(cleaned ==="rock" ){
+                switch(comp_choice){
+                case 0: document.getElementById("comp").textContent="Computer Choice is rock";
+                document.getElementById("results").innerHTML="DRAW";  break;
+                case 1:   document.getElementById("comp").textContent="Computer Choice is paper";
+                document.getElementById("results").innerHTML=" You Lost"; ++score_cc; break;
+                case 2:   document.getElementById("comp").textContent="Computer Choice is Siccor";
+                document.getElementById("results").innerHTML="You WIN"; ++score_hh;break; }}
+               else if(cleaned ==="paper" ){
+                switch(comp_choice){
+                case 0: document.getElementById("comp").textContent="Computer Choice is Rock";
+                document.getElementById("results").innerHTML="You Win";  ++score_hh; break;
+                case 1:   document.getElementById("comp").textContent="Computer Choice is Paper";
+                document.getElementById("results").innerHTML="Draw"; break;
+                case 2:   document.getElementById("comp").textContent="Computer Choice is scissor";
+                document.getElementById("results").innerHTML="You lost"; ++score_cc; break; }}
+            else if(cleaned ==="scissor" ){
+                switch(comp_choice){  case 0: 
+                 document.getElementById("comp").textContent="Computer Choice is Rock";
+                document.getElementById("results").innerHTML="You Lost"; ++score_cc; break;
+                case 1:   document.getElementById("comp").textContent="Computer Choice is Paper";
+                document.getElementById("results").innerHTML="You WIN"; ++score_hh;
+                break; case 2:   document.getElementById("comp").textContent="Computer Choice is Scissor";
+                document.getElementById("results").innerHTML="DRAW"; break;  }}
+            else{
+                 document.getElementById("results").innerHTML="Incorrect Input";
+            }
+             updateScore();
+           }
+       updateScore();
+      
+
+     </script>
+
+</body>
+
+    
+</html>
